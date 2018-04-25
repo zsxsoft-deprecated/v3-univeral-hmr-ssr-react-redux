@@ -36,7 +36,7 @@ class Html extends Component {
 
     let state = store.getState()
 
-    const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`
+    const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state).replace(/<\/script>/ig, '<\\/script>')}`
     const Layout = require('../../build/prerender.js').default
 
     const root = renderToString(
