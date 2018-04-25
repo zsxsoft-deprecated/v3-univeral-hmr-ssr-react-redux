@@ -20,4 +20,4 @@ const HMR = (app) => {
   return app;
 }
 
-export default HMR;
+module.exports = HMR

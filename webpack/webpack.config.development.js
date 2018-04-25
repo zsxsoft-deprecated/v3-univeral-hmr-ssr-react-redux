@@ -10,19 +10,24 @@ const universalSrc = path.join(src, 'universal');
 
 const clientInclude = [clientSrc, universalSrc];
 
-const babelQuery = {
-  "presets": [
-    "react",
-    ["es2015", { "modules": false }],
-    "stage-0"
-  ],
-  "plugins": [
-    "transform-decorators-legacy",
-    "react-hot-loader/babel"
-  ]
-};
+const babelQuery =
+  {
+    "presets": [
+      "react",
+      [ "env", {
+        "targets": {
+          "browsers": "> 2%"
+        }
+      }],
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-decorators-legacy"
+    ]
+  }
+;
 
-export default {
+module.exports = {
   devtool: 'eval',
   context: src,
   entry: {

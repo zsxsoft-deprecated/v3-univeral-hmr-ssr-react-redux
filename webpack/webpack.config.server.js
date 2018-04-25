@@ -12,7 +12,7 @@ const server = path.join(src, 'server');
 
 const serverInclude = [server, universal];
 
-export default {
+module.exports = {
   context: src,
   entry: {
     prerender: './universal/routes/Routes.js'

@@ -24,7 +24,7 @@ const vendor = [
   'redux'
 ];
 
-export default {
+module.exports = {
   context: src,
   entry: {
     app: [
