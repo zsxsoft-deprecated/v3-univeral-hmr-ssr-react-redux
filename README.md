@@ -1,6 +1,9 @@
-# ⚡ (V2) Universal JS - Server Side Rendering, Code Splitting and Hot Module Reloading ⚡
+# ⚡ (V3) Universal JS - Server Side Rendering, Code Splitting and Hot Module Reloading ⚡
+
 
 ## 💭 What is it?
+It's based on [v2-universal-js-hmr-ssr-react-redux](https://github.com/Alex-ray/v2-universal-js-hmr-ssr-react-redux), thanks [Alex-ray](https://github.com/Alex-ray)'s work!
+
 *Universal JS: -*
 JavaScript that can run on both the server and client (or any other JS platform for that matter) !
 
@@ -32,10 +35,10 @@ The main goal of this project remains the same; A simple and no BS approach to a
 Universal JS, Server Side Rendering, Code Splitting and Hot Module Reloading using
 the following technologies:
 
-- React
+- React 16
 - Redux
 - React Router 4
-- Webpack 2
+- Webpack 3
 - Hot Module Reloader 3
 - Babel
 - Express
@@ -61,6 +64,12 @@ This will build all your assets and write them to a `/build` folder in the root 
 
 ## 🗒 Notes
 
+### Hot Module Reload
 Hot Module Reloading does not work with `System.import`, as such there are two route sources.
 - The first one `src/universal/routes/static.js` is for static routes (no code splitting) that is for the development environment to work nicely with [React Hot Loader 3](https://github.com/gaearon/react-hot-loader)
 - The second route source `src/universal/routes/async.js` is for asynchronous routes (Code splitting using System.import).
+
+
+### Why not Webpack 4?
+
+Webpack 4 **has no documentation at all** currently (04/25/2018), so I don't think my time is cheap enough to find a way to configure webpack to waste my valuable weekend.

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 
@@ -9,7 +8,6 @@ class Home extends Component {
     return (
       <div className={styles.home}>
         <h1 className={styles.title}>⚡ Universal JS, HMR and SSR ⚡</h1>
-
         <div>
           <h2>What is it?</h2>
           <ul>
@@ -57,6 +55,7 @@ class Home extends Component {
         <div className={styles.center}>
           <Link className={styles.button} to='/counter'>Go to App</Link>
         </div>
+
       </div>
     )
   }

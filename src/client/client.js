@@ -1,5 +1,5 @@
 import React from 'react'
-import {render} from 'react-dom'
+import {hydrate} from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
 
 // Components
@@ -15,7 +15,7 @@ const store = createStore(history)
 
 const rootEl = document.getElementById('root')
 const renderApp = (Component) => {
-  render(
+  hydrate(
     <AppContainer>
       <Provider store={store}>
         <Component history={history} />
@@ -30,6 +30,6 @@ renderApp(App)
 if (module.hot) {
   module.hot.accept('./containers/AppContainer.js', () => {
     const nextApp = require('./containers/AppContainer.js')
-    renderApp(nextApp)
+    renderApp(nextApp.default)
   })
 }

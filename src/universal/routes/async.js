@@ -28,9 +28,9 @@ function asyncRoute (getComponent) {
 }
 
 export const Home = asyncRoute(() => {
-  return System.import('../components/Home/Home.js')
+  return import('../components/Home/Home.js').then(p => p.default)
 })
 
 export const Counter = asyncRoute(() => {
-  return System.import('../modules/counter/containers/Counter/CounterContainer.js')
+  return import('../modules/counter/containers/Counter/CounterContainer.js').then(p => p.default)
 })

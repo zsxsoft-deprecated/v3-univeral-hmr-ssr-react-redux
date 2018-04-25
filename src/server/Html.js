@@ -13,7 +13,8 @@ class Html extends Component {
     url: PropTypes.string.isRequired,
     store: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
-    assets: PropTypes.object
+    assets: PropTypes.object,
+    context: PropTypes.object
   }
 
   render () {
@@ -36,9 +37,9 @@ class Html extends Component {
     let state = store.getState()
 
     const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`
-    const Layout = PROD ? require('../../build/prerender.js') : () => {}
+    const Layout = require('../../build/prerender.js').default
 
-    const root = PROD && renderToString(
+    const root = renderToString(
       <Provider store={store}>
         <StaticRouter location={url} context={context}>
           <Layout />
@@ -56,8 +57,8 @@ class Html extends Component {
         </head>
         <body>
           <script dangerouslySetInnerHTML={{__html: initialState}} />
-          {PROD ? <div id="root" dangerouslySetInnerHTML={{__html: root}}></div> : <div id="root"></div>}
-          {PROD && <script dangerouslySetInnerHTML={{__html: manifest.text}}/>}
+          <div id="root" dangerouslySetInnerHTML={{__html: root}}></div>
+          {PROD && <script src={manifest.js}/>}
           {PROD && <script src={vendor.js}/>}
           <script src={PROD ? app.js : '/static/app.js'} />
         </body>

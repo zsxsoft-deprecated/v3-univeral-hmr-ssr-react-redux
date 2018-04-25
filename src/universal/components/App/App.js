@@ -6,7 +6,7 @@ import styles from './App.css'
 class App extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired
-  };
+  }
 
   render () {
     return (

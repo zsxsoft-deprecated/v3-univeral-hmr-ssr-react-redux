@@ -70,7 +70,7 @@ module.exports = {
     })
   ],
   module: {
-    rules: [
+    loaders: [
       {test: /\.(png|j|jpeg|gif|svg|woff|woff2)$/,
         use: {
           loader: 'url-loader',

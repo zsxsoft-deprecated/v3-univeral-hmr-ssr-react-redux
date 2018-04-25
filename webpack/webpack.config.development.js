@@ -1,6 +1,5 @@
 import path from 'path'
 import webpack from 'webpack'
-import qs from 'querystring'
 
 const root = process.cwd()
 const src = path.join(root, 'src')
@@ -28,11 +27,9 @@ const babelQuery =
 
 module.exports = {
   devtool: 'eval',
-  mode: 'development',
   context: src,
   entry: {
     app: [
-      'babel-polyfill/dist/polyfill.js',
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?noInfo=false',
       './client/client.js'
@@ -59,7 +56,7 @@ module.exports = {
     modules: [src, 'node_modules']
   },
   module: {
-    rules: [
+    loaders: [
       {test: /\.(png|j|jpeg|gif|svg|woff|woff2)$/,
         use: {
           loader: 'url-loader',

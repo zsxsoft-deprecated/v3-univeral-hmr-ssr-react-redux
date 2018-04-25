@@ -12,7 +12,8 @@
     "babel"
   ],
   "extends": [
-    "standard"
+    "standard",
+    "plugin:react/recommended"
   ],
   "globals": {
     "tracer": true
