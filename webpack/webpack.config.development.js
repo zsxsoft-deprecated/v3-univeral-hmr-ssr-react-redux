@@ -28,6 +28,7 @@ const babelQuery =
 
 module.exports = {
   devtool: 'eval',
+  mode: 'development',
   context: src,
   entry: {
     app: [
@@ -58,7 +59,7 @@ module.exports = {
     modules: [src, 'node_modules']
   },
   module: {
-    loaders: [
+    rules: [
       {test: /\.(png|j|jpeg|gif|svg|woff|woff2)$/,
         use: {
           loader: 'url-loader',
