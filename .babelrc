@@ -1,14 +1,13 @@
 {
   "presets": [
-    "react",
-    [ "env", {
+    "@babel/preset-react",
+    [ "@babel/preset-env", {
       "targets": {
         "browsers": "> 2%"
       }
     }],
-    "stage-0"
-  ],
-  "plugins": [
-    "transform-decorators-legacy"
+    ["@babel/preset-stage-0", {
+      "decoratorsLegacy": true
+    }]
   ]
 }

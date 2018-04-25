@@ -10,20 +10,19 @@ const universalSrc = path.join(src, 'universal')
 const clientInclude = [clientSrc, universalSrc]
 
 const babelQuery =
-  {
-    'presets': [
-      'react',
-      [ 'env', {
-        'targets': {
-          'browsers': '> 2%'
-        }
-      }],
-      'stage-0'
-    ],
-    'plugins': [
-      'transform-decorators-legacy'
-    ]
-  }
+{
+  'presets': [
+    '@babel/preset-react',
+    [ '@babel/preset-env', {
+      'targets': {
+        'browsers': '> 2%'
+      }
+    }],
+    ['@babel/preset-stage-0', {
+      'decoratorsLegacy': true
+    }]
+  ]
+}
 
 module.exports = {
   devtool: 'eval',

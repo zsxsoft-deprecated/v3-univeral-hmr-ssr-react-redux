@@ -36,11 +36,11 @@ Universal JS, Server Side Rendering, Code Splitting and Hot Module Reloading usi
 the following technologies:
 
 - React 16
-- Redux
+- Redux 5
 - React Router 4
 - Webpack 3
 - Hot Module Reloader 3
-- Babel
+- Babel 7
 - Express
 - webpack-dev-middleware
 - webpack-hot-middleware
