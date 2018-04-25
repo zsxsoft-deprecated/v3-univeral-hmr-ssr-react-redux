@@ -1,28 +1,27 @@
-import React, {Component, PropTypes} from 'react';
-import styles from './Counter.css';
-import classNames from 'classnames';
+import React, {Component, PropTypes} from 'react'
+import styles from './Counter.css'
+import classNames from 'classnames'
 
 class Counter extends Component {
-
   static propTypes = {
     incrementCount: PropTypes.func.isRequired,
     decrementCount: PropTypes.func.isRequired,
     count: PropTypes.number.isRequired
   }
 
-  handleLinkClick(event) {
-    event.stopPropagation();
-    event.preventDefault();
+  handleLinkClick (event) {
+    event.stopPropagation()
+    event.preventDefault()
   }
 
   handleIncrementClick (incrementCount, event) {
-    this.handleLinkClick(event);
-    incrementCount();
+    this.handleLinkClick(event)
+    incrementCount()
   }
 
-  handleDecrementClick(decrementCount, event) {
-    this.handleLinkClick(event);
-    decrementCount();
+  handleDecrementClick (decrementCount, event) {
+    this.handleLinkClick(event)
+    decrementCount()
   }
 
   render () {
@@ -30,7 +29,7 @@ class Counter extends Component {
       count,
       incrementCount,
       decrementCount
-    } = this.props;
+    } = this.props
 
     return (
       <div className={styles.counterContainer}>
@@ -42,4 +41,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter;
+export default Counter

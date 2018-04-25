@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router-dom';
+import React, {Component, PropTypes} from 'react'
+import {Link} from 'react-router-dom'
 
-import styles from './Home.css';
+import styles from './Home.css'
 
 class Home extends Component {
   render () {
@@ -29,7 +29,6 @@ class Home extends Component {
           </ul>
         </div>
 
-
         <div>
           <h2>Why?</h2>
           <ul>
@@ -54,13 +53,12 @@ class Home extends Component {
           <p>Lets check it out...</p>
         </div>
 
-
         <div className={styles.center}>
           <Link className={styles.button} to='/counter'>Go to App</Link>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home

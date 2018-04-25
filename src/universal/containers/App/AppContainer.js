@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import App from 'universal/components/App/App';
+import React, {Component, PropTypes} from 'react'
+import App from 'universal/components/App/App'
 
 class AppContainer extends Component {
   static propTypes = {
@@ -9,8 +9,8 @@ class AppContainer extends Component {
   render () {
     return (
       <App {...this.props}/>
-    );
+    )
   }
 }
 
-export default AppContainer;
+export default AppContainer

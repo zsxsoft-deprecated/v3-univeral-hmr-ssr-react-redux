@@ -1,2 +1,2 @@
-require('babel-register');
-module.exports = require('./webpack.config.client.js');
+require('babel-register')
+module.exports = require('./webpack.config.client.js')
