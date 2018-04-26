@@ -2,15 +2,12 @@ import path from 'path'
 import webpack from 'webpack'
 import AssetsPlugin from 'assets-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import merge from 'webpack-merge'
 
 const root = process.cwd()
 const src = path.join(root, 'src')
 const build = path.join(root, 'build')
-
-const clientSrc = path.join(src, 'client')
-const universalSrc = path.join(src, 'universal')
-
-const clientInclude = [clientSrc, universalSrc]
+const global = require('./webpack.config.global')
 
 // Cache vendor && client javascript on CDN...
 const vendor = [
@@ -21,7 +18,7 @@ const vendor = [
   'redux'
 ]
 
-module.exports = {
+module.exports = merge(global, {
   context: src,
   entry: {
     app: [
@@ -57,7 +54,7 @@ module.exports = {
     /* minChunkSize should be 50000 for production apps
     * 10 is for this example */
     new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10}),
-    new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}, comments: /(?:)/}),
+    new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}}),
     new AssetsPlugin({path: build, filename: 'assets.json'}),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
@@ -65,40 +62,5 @@ module.exports = {
       '__PRODUCTION__': true,
       'process.env.NODE_ENV': JSON.stringify('production')
     })
-  ],
-  module: {
-    loaders: [
-      {test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000
-          }
-        }
-      },
-
-      // JavaScript
-      {test: /\.js$/,
-        loader: 'babel-loader',
-        include: clientInclude
-      },
-
-      // CSS
-      {test: /\.css|less$/,
-        include: clientInclude,
-        loaders: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {loader: 'css-loader',
-              options: {
-                root: src,
-                modules: true,
-                importLoaders: 1,
-                localIdentName: '[name]_[local]_[hash:base64:5]'
-              }}
-          ]})
-      }
-
-    ]
-  }
-}
+  ]
+})

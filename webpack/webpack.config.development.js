@@ -1,32 +1,12 @@
 import path from 'path'
 import webpack from 'webpack'
+import merge from 'webpack-merge'
 
 const root = process.cwd()
-const src = path.join(root, 'src')
+const global = require('./webpack.config.global')
 
-const clientSrc = path.join(src, 'client')
-const universalSrc = path.join(src, 'universal')
-
-const clientInclude = [clientSrc, universalSrc]
-
-const babelQuery =
-{
-  'presets': [
-    '@babel/preset-react',
-    [ '@babel/preset-env', {
-      'targets': {
-        'browsers': '> 2%'
-      }
-    }],
-    ['@babel/preset-stage-0', {
-      'decoratorsLegacy': true
-    }]
-  ]
-}
-
-module.exports = {
-  devtool: 'eval',
-  context: src,
+module.exports = merge(global, {
+  devtool: 'cheap-module-eval-source-map',
   entry: {
     app: [
       'react-hot-loader/patch',
@@ -49,43 +29,5 @@ module.exports = {
       '__PRODUCTION__': false,
       'process.env.NODE_ENV': JSON.stringify('development')
     })
-  ],
-  resolve: {
-    extensions: ['.js'],
-    modules: [src, 'node_modules']
-  },
-  module: {
-    loaders: [
-      {test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000
-          }
-        }
-      },
-
-      // Javascript
-      {test: /\.js$/,
-        loader: 'babel-loader',
-        query: babelQuery,
-        include: clientInclude
-      },
-
-      // CSS
-      {test: /\.css$/,
-        include: clientInclude,
-        use: [
-          {loader: 'style-loader'},
-          {loader: 'css-loader',
-            options: {
-              root: src,
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64:5]'
-            }}
-        ]
-      }
-    ]
-  }
-}
+  ]
+})

@@ -1,18 +1,14 @@
 import path from 'path'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import merge from 'webpack-merge'
 
 // Paths
 const root = process.cwd()
-const src = path.join(root, 'src')
 const build = path.join(root, 'build')
-const universal = path.join(src, 'universal')
-const server = path.join(src, 'server')
+const global = require('./webpack.config.global')
 
-const serverInclude = [server, universal]
-
-module.exports = {
-  context: src,
+module.exports = merge(global, {
   entry: {
     prerender: './universal/routes/Routes.js'
   },
@@ -24,10 +20,6 @@ module.exports = {
     libraryTarget: 'commonjs2',
     publicPath: '/static/'
   },
-  resolve: {
-    extensions: ['.js'],
-    modules: [src, 'node_modules']
-  },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin('[name].css'),
@@ -38,40 +30,5 @@ module.exports = {
       '__PRODUCTION__': true,
       'process.env.NODE_ENV': JSON.stringify('production')
     })
-  ],
-  module: {
-    loaders: [
-      {test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000
-          }
-        }
-      },
-
-      {
-        test: /\.css$/,
-        include: serverInclude,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {loader: 'css-loader',
-              options: {
-                root: src,
-                modules: true,
-                importLoaders: 1,
-                localIdentName: '[name]_[local]_[hash:base64:5]'
-              }}
-          ]})
-      },
-
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: serverInclude
-      }
-
-    ]
-  }
-}
+  ]
+})
